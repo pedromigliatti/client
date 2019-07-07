@@ -1,0 +1,73 @@
+import { Injectable } from '@angular/core';
+import { Observable, of, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { catchError, tap, map } from 'rxjs/operators';
+import { Cliente } from 'src/models/cliente';
+import { Locacao } from 'src/models/locacao';
+import { Locadora } from 'src/models/locadora';
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
+const apiUrl = "http://localhost:8080/LocacaoRS";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ApiService {
+
+  constructor(private http: HttpClient) { }
+  
+
+  private handleError<T> (operation = 'operation', result?: T) {
+  return (error: any): Observable<T> => {
+
+    // TODO: send the error to remote logging infrastructure
+    console.error(error); // log to console instead
+
+    // Let the app keep running by returning an empty result.
+    return of(result as T);
+  };
+  }
+
+  getLocacoes (): Observable<Locacao[]> {
+    const url = `${apiUrl}/locacao`;
+    return this.http.get<Locacao[]>(url)
+      .pipe(
+        tap(heroes => console.log('getLocacoes')),
+        catchError(this.handleError('getLocacoes', []))
+      );
+  }
+
+  getLocacao(id: number): Observable<Locacao> {
+    const url = `${apiUrl}/locacoes/${id}`;
+    return this.http.get<Locacao>(url).pipe(
+      tap(_ => console.log(`getLocacao id=${id}`)),
+      catchError(this.handleError<Locacao>(`getLocacao id=${id}`))
+    );
+  }
+
+  addLocacao (locacao): Observable<Locacao> {
+    const url = `${apiUrl}/locacoess`;
+    return this.http.post<Locacao>(url, locacao, httpOptions).pipe(
+      tap((livro: Locacao) => console.log(`addLocacao w/id=${locacao.id}`)),
+      catchError(this.handleError<Locacao>('addLocacao'))
+    );
+  }
+
+  updateLocacao (id, locacao): Observable<any> {
+    const url = `${apiUrl}/locacoes/${id}`;
+    return this.http.put(url, locacao, httpOptions).pipe(
+      tap(_ => console.log(`updateLocacao id=${id}`)),
+      catchError(this.handleError<any>('updateLocacao'))
+    );
+  }
+
+  deleteLocacao (id): Observable<Locacao> {
+    const url = `${apiUrl}/locacoes/${id}`;
+    return this.http.delete<Locacao>(url, httpOptions).pipe(
+      tap(_ => console.log(`deleteLocacao id=${id}`)),
+      catchError(this.handleError<Locacao>('deleteLocacao'))
+    );
+  }
+}
