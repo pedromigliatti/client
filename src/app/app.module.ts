@@ -11,6 +11,17 @@ import { LocacaoCadastroComponent } from './components/locacao-cadastro/locacao-
 import { LocacaoDetalhesComponent } from './components/locacao-detalhes/locacao-detalhes.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSelectModule} from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LocadorasComponent } from './components/locadoras/locadoras.component';
+import { LocadoraCadastroComponent } from './components/locadora-cadastro/locadora-cadastro.component';
+import { LocadoraDetalhesComponent } from './components/locadora-detalhes/locadora-detalhes.component';
+import { LocadoraEdicaoComponent } from './components/locadora-edicao/locadora-edicao.component';
+import { ClientesComponent } from './components/clientes/clientes.component';
+import { ClienteCadastroComponent } from './components/cliente-cadastro/cliente-cadastro.component';
+import { ClienteDetalhesComponent } from './components/cliente-detalhes/cliente-detalhes.component';
+import { ClienteEdicaoComponent } from './components/cliente-edicao/cliente-edicao.component';
+
+
 
 import {
   MatInputModule,
@@ -23,14 +34,20 @@ import {
   MatCardModule,
   MatFormFieldModule } from "@angular/material";
 
-import { ReactiveFormsModule } from '@angular/forms';
-
 @NgModule({
   declarations: [
     AppComponent,
     LocacoesComponent,
     LocacaoCadastroComponent,
-    LocacaoDetalhesComponent
+    LocacaoDetalhesComponent,
+    LocadorasComponent,
+    LocadoraCadastroComponent,
+    LocadoraDetalhesComponent,
+    LocadoraEdicaoComponent,
+    ClientesComponent,
+    ClienteCadastroComponent,
+    ClienteDetalhesComponent,
+    ClienteEdicaoComponent
   ],
   imports: [
     BrowserModule,

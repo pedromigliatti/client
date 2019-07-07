@@ -1,1 +1,41 @@
-<p>locacao-cadastro works!</p>
+<div class="example-container mat-elevation-z8">
+    <div class="example-loading-shade" *ngIf="isLoadingResults">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+    <div class="button-row">
+      <a mat-flat-button color="primary" [routerLink]="['/locacoes']">
+        <mat-icon>list</mat-icon>
+      </a>
+    </div>
+    <mat-card class="example-card">
+      <form [formGroup]="locacaoForm" (ngSubmit)="onFormSubmit(livroForm.value)">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Data" formControlName="data" [errorStateMatcher]="matcher">
+          <mat-error>
+            <span *ngIf="!locacaoForm.get('data').valid && locacaoForm.get('data').touched">Por favor entre com a data</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Locadora</mat-label>
+            <mat-select formControlName="locadora">
+                <mat-option *ngFor="let locadora of locadoras" [value]="locadora.id">
+                  {{locadora.nome}}
+                </mat-option>
+              </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Cliente</mat-label>
+            <mat-select formControlName="cliente">
+                <mat-option *ngFor="let cliente of clientes" [value]="cliente.id">
+                  {{cliente.nome}}
+                </mat-option>
+              </mat-select>
+        </mat-form-field>
+        <div class="button-row">
+          <button type="submit" [disabled]="!locacaoForm.valid" mat-flat-button color="primary">
+            <mat-icon>save</mat-icon>
+          </button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
