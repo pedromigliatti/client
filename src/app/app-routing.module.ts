@@ -13,6 +13,8 @@ import { ClientesComponent } from './components/clientes/clientes.component';
 import { ClienteCadastroComponent } from './components/cliente-cadastro/cliente-cadastro.component';
 import { ClienteDetalhesComponent } from './components/cliente-detalhes/cliente-detalhes.component';
 
+import { IndexComponent } from './components/index/index.component';
+
 
 const routes: Routes = [
 {
@@ -42,8 +44,11 @@ const routes: Routes = [
   {
     path: 'cliente-cadastro', component: ClienteCadastroComponent, data: { title: 'Cadastro Cliente' }
   },
+  {
+    path: 'index', component: IndexComponent, data: { title: 'Sistema de Locação de Bicicletas' }
+  },
   { 
-     path: '', redirectTo: '/locacoes', pathMatch: 'full'
+     path: '', redirectTo: '/index', pathMatch: 'full'
   }
 ];
 

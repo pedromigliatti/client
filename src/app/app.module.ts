@@ -33,6 +33,7 @@ import {
   MatButtonModule,
   MatCardModule,
   MatFormFieldModule } from "@angular/material";
+import { IndexComponent } from './components/index/index.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import {
     ClientesComponent,
     ClienteCadastroComponent,
     ClienteDetalhesComponent,
-    ClienteEdicaoComponent
+    ClienteEdicaoComponent,
+    IndexComponent
   ],
   imports: [
     BrowserModule,
